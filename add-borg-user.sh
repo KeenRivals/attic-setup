@@ -1,18 +1,18 @@
 #!/bin/bash
-# File: add-attic-user.sh
+# File: add-borg-user.sh
 # Description:
-#	1. Create account for attic user provided on command line.
+#	1. Create account for borg user provided on command line.
 #	2. Set user password.
 #
 # Notes: 
-#	- Please use attic-${HOSTNAME} for the usernames for consistency.
+#	- Please use borg-${HOSTNAME} for the usernames for consistency.
 
 set -eu
 
-ATTICUSER=${1}
+BORGUSER=${1}
 
-adduser --home /attic-backup/${ATTICUSER}/ --system --shell /bin/bash --ingroup attic-backup ${ATTICUSER}
+adduser --home /borg-backup/${BORGUSER}/ --system --shell /bin/bash --ingroup borg-backup ${BORGUSER}
 
-passwd ${ATTICUSER}
+passwd ${BORGUSER}
 
 # vim: ai:ts=4:noexpandtab

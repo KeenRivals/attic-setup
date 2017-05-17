@@ -1,12 +1,12 @@
 #!/bin/bash
-# File: configure-attic.sh
+# File: configure-borg.sh
 # Description:
 #	1. Copy ssh key to BACKUPHOST.
-#	2. Initialize attic repository on BACKUPHOST.
+#	2. Initialize borg repository on BACKUPHOST.
 #
 # Notes:
 #	- Run as the user which will copy backups to remote host (ex: root).
-#	- Run add-attic-user.sh on remote host before this script.
+#	- Run add-borg-user.sh on remote host before this script.
 
 set -eu
 
@@ -15,12 +15,12 @@ NAME=$HOSTNAME
 
 # Repository location
 BACKUPHOST=tech-storage.lshs.org
-REPO=attic-${NAME}@${BACKUPHOST}:attic-${NAME}.attic
+REPO=borg-${NAME}@${BACKUPHOST}:borg-${NAME}.borg
 
 ssh-keygen -q
 
-ssh-copy-id attic-${NAME}@${BACKUPHOST}
+ssh-copy-id borg-${NAME}@${BACKUPHOST}
 
-attic init --encryption=keyfile attic-${NAME}@${BACKUPHOST}:${HOSTNAME}.attic
+borg init --encryption=keyfile borg-${NAME}@${BACKUPHOST}:${HOSTNAME}.borg
 
 # vim: ai:ts=4:noexpandtab
